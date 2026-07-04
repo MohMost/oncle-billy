@@ -1,8 +1,9 @@
 'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Calendar, FileText, AlertCircle, ChevronRight, Bell, Settings, Download, Clock } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Calendar, FileText, AlertCircle, ChevronRight, Bell, Settings, Clock } from 'lucide-react';
 import Link from 'next/link';
+import { ROUTES } from '@/constants';
 
 export default function ClientDashboardPage() {
   const stats = [
@@ -44,7 +45,6 @@ export default function ClientDashboardPage() {
   return (
     <main className="min-h-screen bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-4xl font-bold text-foreground">Tableau de Bord</h1>
@@ -74,17 +74,14 @@ export default function ClientDashboardPage() {
 
         {/* Main Content */}
         <div className="grid lg:grid-cols-3 gap-6">
-          {/* Left Column */}
           <div className="lg:col-span-2 space-y-6">
             {/* Next Appointment */}
             <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+              <div className="p-6">
+                <h2 className="text-xl font-bold text-foreground flex items-center gap-2 mb-4">
                   <Calendar className="size-5 text-primary" />
                   Prochains Rendez-vous
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
+                </h2>
                 {upcomingAppointments.length > 0 ? (
                   <div className="space-y-4">
                     {upcomingAppointments.map((apt) => (
@@ -103,40 +100,33 @@ export default function ClientDashboardPage() {
                             </div>
                           </div>
                           <span className="px-2 py-1 bg-primary/10 text-primary text-xs rounded font-semibold">
-                            {apt.status === 'confirmed' ? 'Confirmé' : 'En Attente'}
+                            Confirmé
                           </span>
                         </div>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <div className="text-center py-8 text-muted-foreground">
-                    <p className="mb-4">Aucun rendez-vous prévu</p>
-                    <Link href="/book-inspection" className="text-primary hover:underline font-semibold">
-                      Réserver une inspection
-                    </Link>
-                  </div>
+                  <p className="text-muted-foreground">Aucun rendez-vous prévu</p>
                 )}
-              </CardContent>
+              </div>
             </Card>
 
             {/* Recent Reports */}
             <Card>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="flex items-center gap-2">
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
                     <FileText className="size-5 text-primary" />
                     Rapports Récents
-                  </CardTitle>
-                  <Link href="/appointments" className="text-sm text-primary hover:underline">
+                  </h2>
+                  <Link href="/dashboard/reports" className="text-sm text-primary hover:underline">
                     Voir tout
                   </Link>
                 </div>
-              </CardHeader>
-              <CardContent>
                 <div className="space-y-3">
                   {recentReports.map((report) => (
-                    <div key={report.id}>
+                    <Link key={report.id} href={`/dashboard/reports/${report.id}`}>
                       <div className="flex items-center justify-between p-3 bg-muted/30 hover:bg-muted/50 rounded-lg transition-colors cursor-pointer">
                         <div>
                           <div className="font-semibold text-foreground">
@@ -151,10 +141,10 @@ export default function ClientDashboardPage() {
                           <ChevronRight className="size-5 text-muted-foreground" />
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
-              </CardContent>
+              </div>
             </Card>
           </div>
 
@@ -162,35 +152,33 @@ export default function ClientDashboardPage() {
           <div className="space-y-6">
             {/* Quick Actions */}
             <Card>
-              <CardHeader>
-                <CardTitle>Actions Rapides</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <Link href="/book-inspection" className="w-full block px-4 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-center font-semibold text-sm">
-                  Nouvelle Inspection
-                </Link>
-                <Link href="/appointments" className="w-full block px-4 py-3 border-2 border-border text-foreground rounded-lg hover:bg-muted transition-colors text-center font-semibold text-sm">
-                  Mes Rendez-vous
-                </Link>
-                <Link href="/reports" className="w-full block px-4 py-3 border-2 border-border text-foreground rounded-lg hover:bg-muted transition-colors text-center font-semibold text-sm">
-                  Mes Rapports
-                </Link>
-                <Link href="/profile" className="w-full block px-4 py-3 border-2 border-border text-foreground rounded-lg hover:bg-muted transition-colors text-center font-semibold text-sm">
-                  Mon Profil
-                </Link>
-              </CardContent>
+              <div className="p-6">
+                <h3 className="text-lg font-bold text-foreground mb-4">Actions Rapides</h3>
+                <div className="space-y-3">
+                  <Link href="/book-inspection" className="w-full block px-4 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-center font-semibold text-sm">
+                    Nouvelle Inspection
+                  </Link>
+                  <Link href="/dashboard/appointments" className="w-full block px-4 py-3 border-2 border-border text-foreground rounded-lg hover:bg-muted transition-colors text-center font-semibold text-sm">
+                    Mes Rendez-vous
+                  </Link>
+                  <Link href="/dashboard/reports" className="w-full block px-4 py-3 border-2 border-border text-foreground rounded-lg hover:bg-muted transition-colors text-center font-semibold text-sm">
+                    Mes Rapports
+                  </Link>
+                  <Link href="/dashboard/profile" className="w-full block px-4 py-3 border-2 border-border text-foreground rounded-lg hover:bg-muted transition-colors text-center font-semibold text-sm">
+                    Mon Profil
+                  </Link>
+                </div>
+              </div>
             </Card>
 
             {/* Help Card */}
             <Card className="bg-primary/10 border-primary">
-              <CardHeader>
-                <CardTitle className="text-base">Besoin d&apos;Aide?</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 text-sm">
-                <p className="text-muted-foreground">
+              <div className="p-6">
+                <h3 className="text-lg font-bold text-foreground mb-3">Besoin d&apos;Aide?</h3>
+                <p className="text-sm text-muted-foreground mb-4">
                   Notre équipe de support est disponible pour répondre à vos questions
                 </p>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 text-sm">
                   <a href="tel:+33123456789" className="text-primary hover:underline font-semibold">
                     +33 1 23 45 67 89
                   </a>
@@ -198,7 +186,7 @@ export default function ClientDashboardPage() {
                     support@onclebilly.fr
                   </a>
                 </div>
-              </CardContent>
+              </div>
             </Card>
           </div>
         </div>

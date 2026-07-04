@@ -1,11 +1,11 @@
 'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { FileText, Download, Eye, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 
-export default function ClientReports() {
+export default function DashboardReports() {
   const reports = [
     {
       id: 1,
@@ -14,7 +14,6 @@ export default function ClientReports() {
       date: '15 Décembre 2023',
       rating: 'Bon',
       score: 78,
-      status: 'completed',
       hasSuspicions: false,
     },
     {
@@ -24,7 +23,6 @@ export default function ClientReports() {
       date: '5 Décembre 2023',
       rating: 'Excellent',
       score: 92,
-      status: 'completed',
       hasSuspicions: false,
     },
     {
@@ -34,7 +32,6 @@ export default function ClientReports() {
       date: '20 Novembre 2023',
       rating: 'Moyen',
       score: 62,
-      status: 'completed',
       hasSuspicions: true,
     },
   ];
@@ -47,8 +44,6 @@ export default function ClientReports() {
         return 'bg-blue-100 text-blue-700';
       case 'Moyen':
         return 'bg-yellow-100 text-yellow-700';
-      case 'Mauvais':
-        return 'bg-red-100 text-red-700';
       default:
         return 'bg-muted text-muted-foreground';
     }
@@ -57,25 +52,20 @@ export default function ClientReports() {
   const getScoreColor = (score: number) => {
     if (score >= 80) return 'text-green-700';
     if (score >= 60) return 'text-blue-700';
-    if (score >= 40) return 'text-yellow-700';
-    return 'text-red-700';
+    return 'text-yellow-700';
   };
 
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="font-display text-4xl font-bold text-foreground mb-2">
-          Mes rapports
-        </h1>
-        <p className="text-foreground/70">
-          Consultez tous vos rapports d&apos;inspection
-        </p>
-      </div>
+    <main className="min-h-screen bg-background">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+        <div>
+          <h1 className="text-4xl font-bold text-foreground mb-2">Mes rapports</h1>
+          <p className="text-muted-foreground">Consultez tous vos rapports d&apos;inspection</p>
+        </div>
 
-      {reports.length > 0 ? (
-        <div className="space-y-4">
+        <div className="mt-8 space-y-4">
           {reports.map((report) => (
-            <Card key={report.id} className="hover:shadow-lg transition-shadow">
+            <Card key={report.id}>
               <CardContent className="pt-6">
                 <div className="grid md:grid-cols-5 gap-6">
                   {/* Vehicle Info */}
@@ -105,7 +95,7 @@ export default function ClientReports() {
                     <div className="flex items-center gap-2">
                       <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                         <div 
-                          className={`h-full rounded-full ${getScoreColor(report.score) === 'text-green-700' ? 'bg-green-500' : getScoreColor(report.score) === 'text-blue-700' ? 'bg-blue-500' : getScoreColor(report.score) === 'text-yellow-700' ? 'bg-yellow-500' : 'bg-red-500'}`}
+                          className={`h-full rounded-full ${report.score >= 80 ? 'bg-green-500' : report.score >= 60 ? 'bg-blue-500' : 'bg-yellow-500'}`}
                           style={{ width: `${report.score}%` }}
                         />
                       </div>
@@ -123,7 +113,7 @@ export default function ClientReports() {
                       </button>
                     )}
                     <Link 
-                      href={`/reports/${report.id}`}
+                      href={`/dashboard/reports/${report.id}`}
                       className="p-2 hover:bg-muted rounded-lg transition-colors"
                     >
                       <Eye className="size-5 text-primary" />
@@ -152,25 +142,7 @@ export default function ClientReports() {
             </Card>
           ))}
         </div>
-      ) : (
-        <Card className="border-2 border-dashed">
-          <CardHeader className="text-center py-12">
-            <FileText className="size-12 text-foreground/20 mx-auto mb-4" />
-            <CardTitle>Aucun rapport</CardTitle>
-            <CardDescription className="mt-2">
-              Vous n&apos;avez pas encore de rapports d&apos;inspection. Ils apparaîtront ici une fois que vos inspections seront complétées.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="text-center pb-8">
-            <Link 
-              href="/book-inspection"
-              className="inline-block px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-semibold"
-            >
-              Réserver une inspection
-            </Link>
-          </CardContent>
-        </Card>
-      )}
-    </div>
+      </div>
+    </main>
   );
 }

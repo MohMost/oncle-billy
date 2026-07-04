@@ -125,6 +125,9 @@ export const PRICING_PLANS = [
   },
 ] as const;
 
+// Alias for compatibility
+export const INSPECTION_PACKAGES = PRICING_PLANS;
+
 // Time Slots
 export const TIME_SLOTS = [
   '08:00',

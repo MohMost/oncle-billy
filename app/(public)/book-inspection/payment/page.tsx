@@ -104,7 +104,7 @@ export default function PaymentPage() {
                   placeholder="1234 5678 9012 3456"
                   value={cardData.cardNumber}
                   onChange={handleCardChange}
-                  maxLength="19"
+                  maxLength={19}
                 />
               </div>
 
@@ -117,7 +117,7 @@ export default function PaymentPage() {
                     placeholder="MM/YY"
                     value={cardData.expiryDate}
                     onChange={handleCardChange}
-                    maxLength="5"
+                    maxLength={5}
                   />
                 </div>
                 <div>
@@ -128,7 +128,7 @@ export default function PaymentPage() {
                     placeholder="123"
                     value={cardData.cvv}
                     onChange={handleCardChange}
-                    maxLength="4"
+                    maxLength={4}
                   />
                 </div>
               </div>
