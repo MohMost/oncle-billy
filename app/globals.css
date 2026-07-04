@@ -1,107 +1,26 @@
-/* styles/globals.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    /* Radius */
-    --radius: 0.5rem;
-    
-    /* Background & Foreground */
-    --background: 36 30% 95%; /* crème #f5f0e8 */
-    --foreground: 215 45% 15%; /* bleu foncé #1a2e4a */
-    
-    /* Muted */
-    --muted: 215 20% 85%;
-    --muted-foreground: 215 45% 35%;
-    
-    /* Popover */
-    --popover: 36 30% 95%;
-    --popover-foreground: 215 45% 15%;
-    
-    /* Card */
-    --card: 36 30% 95%;
-    --card-foreground: 215 45% 15%;
-    
-    /* Border & Input */
-    --border: 215 45% 85%;
-    --input: 215 45% 85%;
-    
-    /* Primary - Bleu */
-    --primary: 215 45% 20%; /* bleu #1a2e4a */
-    --primary-foreground: 36 30% 95%; /* crème */
-    
-    /* Secondary - Charbon */
-    --secondary: 0 0% 10%; /* charbon #1a1a1a */
-    --secondary-foreground: 36 30% 95%;
-    
-    /* Accent - Rouge */
-    --accent: 350 70% 45%; /* rouge #d62d4c */
-    --accent-foreground: 36 30% 95%;
-    
-    /* Destructive */
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 36 30% 95%;
-    
-    /* Ring - Rouge pour focus */
-    --ring: 350 70% 45%;
-    
-    /* Charts */
-    --chart-1: 215 45% 20%;
-    --chart-2: 350 70% 45%;
-    --chart-3: 0 0% 10%;
-    --chart-4: 36 30% 85%;
-    --chart-5: 215 45% 35%;
-  }
-  
-  .dark {
-    /* Background & Foreground */
-    --background: 215 45% 8%;
-    --foreground: 36 30% 95%;
-    
-    /* Muted */
-    --muted: 215 45% 20%;
-    --muted-foreground: 36 30% 70%;
-    
-    /* Popover */
-    --popover: 215 45% 10%;
-    --popover-foreground: 36 30% 95%;
-    
-    /* Card */
-    --card: 215 45% 10%;
-    --card-foreground: 36 30% 95%;
-    
-    /* Border & Input */
-    --border: 215 45% 20%;
-    --input: 215 45% 20%;
-    
-    /* Primary - Rouge (inversé pour le dark) */
-    --primary: 350 70% 45%;
-    --primary-foreground: 36 30% 95%;
-    
-    /* Secondary - Charbon */
-    --secondary: 215 45% 15%;
-    --secondary-foreground: 36 30% 95%;
-    
-    /* Accent - Bleu */
-    --accent: 350 70% 45%;
-    --accent-foreground: 36 30% 95%;
-    
-    /* Destructive */
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 36 30% 95%;
-    
-    /* Ring - Rouge */
-    --ring: 350 70% 45%;
-    
-    /* Charts */
-    --chart-1: 350 70% 45%;
-    --chart-2: 215 45% 20%;
-    --chart-3: 0 0% 15%;
-    --chart-4: 36 30% 70%;
-    --chart-5: 215 45% 35%;
-  }
+@theme {
+  --color-primary: hsl(215 45% 20%);
+  --color-primary-foreground: hsl(36 30% 95%);
+  --color-secondary: hsl(0 0% 10%);
+  --color-secondary-foreground: hsl(36 30% 95%);
+  --color-accent: hsl(350 70% 45%);
+  --color-accent-foreground: hsl(36 30% 95%);
+  --color-background: hsl(36 30% 95%);
+  --color-foreground: hsl(215 45% 15%);
+  --color-muted: hsl(215 20% 85%);
+  --color-muted-foreground: hsl(215 45% 35%);
+  --color-destructive: hsl(0 84.2% 60.2%);
+  --color-destructive-foreground: hsl(36 30% 95%);
+  --color-border: hsl(215 45% 85%);
+  --color-input: hsl(215 45% 85%);
+  --color-ring: hsl(350 70% 45%);
+  --color-card: hsl(36 30% 95%);
+  --color-card-foreground: hsl(215 45% 15%);
+  --color-popover: hsl(36 30% 95%);
+  --color-popover-foreground: hsl(215 45% 15%);
+  --radius: 0.5rem;
 }
 
 @layer base {
@@ -114,7 +33,7 @@
   }
 }
 
-/* Polices personnalisées */
+/* Custom Fonts */
 @font-face {
   font-family: 'CameraPlainVariable';
   src: url('https://cdn.gpteng.co/mcp-widgets/v1/fonts/CameraPlainVariable.woff2') format('woff2');
@@ -123,345 +42,38 @@
   font-display: swap;
 }
 
-/* Classes utilitaires personnalisées */
+/* Custom Utilities */
 @layer utilities {
-  /* Fonts */
   .font-display {
     font-family: 'CameraPlainVariable', ui-sans-serif, system-ui, -apple-system, sans-serif;
   }
-  
-  /* Text Colors - HSL */
-  .text-bleu {
-    color: hsl(215, 45%, 20%);
+
+  .container-oncle-billy {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
   }
-  
-  .text-rouge {
-    color: hsl(350, 70%, 45%);
+
+  .text-balance {
+    text-wrap: balance;
   }
-  
-  .text-creme {
-    color: hsl(36, 30%, 95%);
+
+  .shadow-bleu {
+    box-shadow: 0 4px 14px 0 hsl(215 45% 20% / 0.1);
   }
-  
-  .text-charbon {
-    color: hsl(0, 0%, 10%);
+
+  .shadow-rouge {
+    box-shadow: 0 4px 14px 0 hsl(350 70% 45% / 0.2);
   }
-  
-  /* Text Colors with Opacity - HSL */
-  .text-bleu\/70 {
-    color: hsl(215, 45%, 20% / 0.7);
+
+  .transition-all-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
-  .text-bleu\/20 {
-    color: hsl(215, 45%, 20% / 0.2);
-  }
-  
-  .text-rouge\/20 {
-    color: hsl(350, 70%, 45% / 0.2);
-  }
-  
-  .text-creme\/70 {
-    color: hsl(36, 30%, 95% / 0.7);
-  }
-  
-  .text-creme\/50 {
-    color: hsl(36, 30%, 95% / 0.5);
-  }
-  
-  .text-creme\/90 {
-    color: hsl(36, 30%, 95% / 0.9);
-  }
-  
-  /* Background Colors - HSL */
-  .bg-bleu {
-    background-color: hsl(215, 45%, 20%);
-  }
-  
-  .bg-rouge {
-    background-color: hsl(350, 70%, 45%);
-  }
-  
-  .bg-creme {
-    background-color: hsl(36, 30%, 95%);
-  }
-  
-  .bg-charbon {
-    background-color: hsl(0, 0%, 10%);
-  }
-  
-  /* Background Colors with Opacity - HSL */
-  .bg-bleu\/5 {
-    background-color: hsl(215, 45%, 20% / 0.05);
-  }
-  
-  .bg-bleu\/10 {
-    background-color: hsl(215, 45%, 20% / 0.1);
-  }
-  
-  .bg-rouge\/10 {
-    background-color: hsl(350, 70%, 45% / 0.1);
-  }
-  
-  .bg-rouge\/90 {
-    background-color: hsl(350, 70%, 45% / 0.9);
-  }
-  
-  .bg-creme\/5 {
-    background-color: hsl(36, 30%, 95% / 0.05);
-  }
-  
-  .bg-creme\/90 {
-    background-color: hsl(36, 30%, 95% / 0.9);
-  }
-  
-  /* Border Colors - HSL */
-  .border-bleu {
-    border-color: hsl(215, 45%, 20%);
-  }
-  
-  .border-rouge {
-    border-color: hsl(350, 70%, 45%);
-  }
-  
-  .border-creme {
-    border-color: hsl(36, 30%, 95%);
-  }
-  
-  /* Border Colors with Opacity - HSL */
-  .border-bleu\/10 {
-    border-color: hsl(215, 45%, 20% / 0.1);
-  }
-  
-  .border-creme\/10 {
-    border-color: hsl(36, 30%, 95% / 0.1);
-  }
-  
-  .border-rouge\/20 {
-    border-color: hsl(350, 70%, 45% / 0.2);
-  }
-  
-  /* Ring Colors */
-  .ring-bleu {
-    --tw-ring-color: hsl(215, 45%, 20%);
-  }
-  
-  .ring-rouge {
-    --tw-ring-color: hsl(350, 70%, 45%);
-  }
-  
-  /* Fill Colors */
-  .fill-bleu {
-    fill: hsl(215, 45%, 20%);
-  }
-  
-  .fill-rouge {
-    fill: hsl(350, 70%, 45%);
-  }
-  
-  .fill-creme {
-    fill: hsl(36, 30%, 95%);
+
+  .gradient-bleu-rouge {
+    background: linear-gradient(135deg, hsl(215 45% 20%) 0%, hsl(350 70% 45%) 100%);
   }
 }
 
-/* Classes de composants personnalisés */
-@layer components {
-  /* Badge de section */
-  .section-badge {
-    @apply inline-flex items-center gap-2 rounded-full bg-bleu/5 border border-bleu/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-bleu;
-  }
-  
-  .section-badge-dot {
-    @apply h-2 w-2 rounded-full bg-rouge;
-  }
-  
-  /* Cartes d'étape */
-  .step-card {
-    @apply bg-card border border-bleu/10 rounded-xl p-8 hover:shadow-lg transition-shadow;
-  }
-  
-  .step-number {
-    @apply font-display text-6xl text-rouge/20;
-  }
-  
-  .step-title {
-    @apply mt-2 font-display text-2xl text-bleu;
-  }
-  
-  .step-description {
-    @apply mt-3 text-bleu/70 leading-relaxed;
-  }
-  
-  /* Cartes de bénéfice */
-  .benefit-card {
-    @apply flex gap-3 items-start bg-card border border-bleu/10 rounded-lg p-5;
-  }
-  
-  .benefit-icon {
-    @apply h-6 w-6 text-rouge flex-shrink-0 mt-0.5;
-  }
-  
-  .benefit-text {
-    @apply text-bleu;
-  }
-  
-  /* Cartes de témoignage (version claire) */
-  .testimonial-card-light {
-    @apply bg-card border border-bleu/10 rounded-xl p-6 flex flex-col;
-  }
-  
-  /* Cartes de témoignage (version sombre) */
-  .testimonial-card-dark {
-    @apply bg-creme/5 border border-creme/10 rounded-xl p-6 flex flex-col;
-  }
-  
-  .testimonial-stars {
-    @apply flex gap-1;
-  }
-  
-  .testimonial-star {
-    @apply h-4 w-4 text-rouge fill-rouge;
-  }
-  
-  .testimonial-quote {
-    @apply mt-4 text-creme/90 leading-relaxed flex-1;
-  }
-  
-  .testimonial-quote-light {
-    @apply mt-4 text-bleu/70 leading-relaxed flex-1;
-  }
-  
-  .testimonial-footer {
-    @apply mt-6 pt-4 border-t border-creme/10;
-  }
-  
-  .testimonial-footer-light {
-    @apply mt-6 pt-4 border-t border-bleu/10;
-  }
-  
-  .testimonial-author {
-    @apply font-display text-lg;
-  }
-  
-  .testimonial-details {
-    @apply text-sm text-creme/50;
-  }
-  
-  .testimonial-details-light {
-    @apply text-sm text-bleu/50;
-  }
-  
-  /* Piliers de valeur */
-  .value-pillar {
-    @apply border-l-4 border-rouge pl-6;
-  }
-  
-  .value-pillar-icon {
-    @apply h-10 w-10 text-rouge mb-4;
-  }
-  
-  .value-pillar-title {
-    @apply font-display text-2xl;
-  }
-  
-  .value-pillar-description {
-    @apply mt-2 text-creme/70 leading-relaxed;
-  }
-  
-  /* Hero */
-  .hero-badge {
-    @apply inline-flex items-center gap-2 rounded-full bg-bleu/5 border border-bleu/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-bleu;
-  }
-  
-  .hero-title {
-    @apply mt-6 font-display text-5xl sm:text-6xl lg:text-7xl leading-[0.95] text-bleu;
-  }
-  
-  .hero-title-highlight {
-    @apply text-rouge;
-  }
-  
-  .hero-subtitle {
-    @apply mt-6 text-lg text-bleu/70 max-w-xl leading-relaxed;
-  }
-  
-  .hero-cta {
-    @apply mt-8 flex flex-wrap gap-3;
-  }
-  
-  .hero-tagline {
-    @apply mt-8 font-display text-xl text-bleu;
-  }
-  
-  .hero-tagline-highlight {
-    @apply text-rouge;
-  }
-  
-  /* Boutons CTA personnalisés */
-  .btn-rouge {
-    @apply inline-flex items-center rounded-md bg-rouge px-6 py-4 text-sm font-bold uppercase tracking-wide text-creme hover:bg-rouge/90 transition-colors;
-  }
-  
-  .btn-bleu {
-    @apply inline-flex items-center rounded-md bg-bleu px-6 py-4 text-sm font-bold uppercase tracking-wide text-creme hover:bg-bleu/90 transition-colors;
-  }
-  
-  .btn-outline-bleu {
-    @apply inline-flex items-center rounded-md border-2 border-bleu px-6 py-4 text-sm font-bold uppercase tracking-wide text-bleu hover:bg-bleu hover:text-creme transition-colors;
-  }
-  
-  .btn-ghost {
-    @apply inline-flex items-center text-sm font-semibold text-bleu hover:text-rouge transition-colors;
-  }
-  
-  /* Section de prix */
-  .price-block {
-    @apply bg-rouge text-creme py-16;
-  }
-  
-  .price-title {
-    @apply font-display text-4xl sm:text-5xl;
-  }
-  
-  .price-subtitle {
-    @apply mt-4 text-creme/90 text-lg;
-  }
-  
-  .price-amount {
-    @apply font-display text-8xl leading-none;
-  }
-  
-  .price-features {
-    @apply flex flex-wrap gap-4 text-sm;
-  }
-  
-  .price-feature {
-    @apply inline-flex items-center gap-2;
-  }
-  
-  /* Section bénéfices */
-  .benefits-section {
-    @apply bg-creme py-20;
-  }
-  
-  .benefits-grid {
-    @apply grid sm:grid-cols-2 gap-4;
-  }
-  
-  /* Section "Une fois de plus" */
-  .section-title {
-    @apply text-sm font-bold uppercase tracking-wider text-rouge text-center;
-  }
-  
-  .section-heading {
-    @apply mt-3 font-display text-4xl sm:text-5xl text-bleu text-center;
-  }
-  
-  .section-heading-light {
-    @apply mt-3 font-display text-4xl sm:text-5xl text-center;
-  }
-}
-
-/* Animations personnalisées */
+/* Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -470,15 +82,6 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
   }
 }
 
@@ -493,110 +96,23 @@
   }
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
+@layer utilities {
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-slide-in {
+    animation: slideIn 0.5s ease-out forwards;
+  }
 }
 
-.animate-pulse-slow {
-  animation: pulse 3s ease-in-out infinite;
-}
+/* Dark Mode Overrides */
+@layer utilities {
+  .dark {
+    color-scheme: dark;
+  }
 
-.animate-slide-in {
-  animation: slideIn 0.5s ease-out forwards;
-}
-
-/* Utilitaires de transition */
-.transition-all-smooth {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Classes de backdrop */
-.backdrop-blur-sm {
-  backdrop-filter: blur(4px);
-}
-
-.backdrop-blur-md {
-  backdrop-filter: blur(8px);
-}
-
-/* Utilitaires de grid */
-.grid-auto-fit {
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-
-/* Utilitaires de texte */
-.text-balance {
-  text-wrap: balance;
-}
-
-/* Utilitaires de shadow */
-.shadow-bleu {
-  box-shadow: 0 4px 14px 0 hsl(215, 45%, 20% / 0.1);
-}
-
-.shadow-rouge {
-  box-shadow: 0 4px 14px 0 hsl(350, 70%, 45% / 0.2);
-}
-
-/* Utilitaires de gradient */
-.gradient-bleu-rouge {
-  background: linear-gradient(135deg, hsl(215, 45%, 20%) 0%, hsl(350, 70%, 45%) 100%);
-}
-
-.gradient-bleu-transparent {
-  background: linear-gradient(180deg, hsl(215, 45%, 20%) 0%, transparent 100%);
-}
-
-/* Container personnalisé */
-.container-oncle-billy {
-  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
-}
-
-/* Section avec fond bleu */
-.section-bleu {
-  @apply bg-bleu text-creme py-20;
-}
-
-/* Section avec fond crème */
-.section-creme {
-  @apply bg-creme py-20;
-}
-
-/* Section avec fond rouge */
-.section-rouge {
-  @apply bg-rouge text-creme py-16;
-}
-
-/* Section avec fond charbon */
-.section-charbon {
-  @apply bg-charbon text-creme py-20;
-}
-
-/* Dark theme specific overrides */
-.dark .text-bleu {
-  color: hsl(350, 70%, 45%);
-}
-
-.dark .bg-bleu {
-  background-color: hsl(350, 70%, 45%);
-}
-
-.dark .border-bleu {
-  border-color: hsl(350, 70%, 45%);
-}
-
-.dark .bg-bleu\/5 {
-  background-color: hsl(350, 70%, 45% / 0.05);
-}
-
-.dark .bg-bleu\/10 {
-  background-color: hsl(350, 70%, 45% / 0.1);
-}
-
-.dark .border-bleu\/10 {
-  border-color: hsl(350, 70%, 45% / 0.1);
-}
-
-.dark .text-bleu\/70 {
-  color: hsl(350, 70%, 45% / 0.7);
+  .dark * {
+    @apply border-border;
+  }
 }
