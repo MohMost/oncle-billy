@@ -11,6 +11,12 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 })
 
+export const metadata = {
+  title: "Oncle Billy - Inspections Automobiles",
+  description: "Inspections automobiles professionnelles de confiance en Île-de-France",
+  keywords: "inspection automobile, pré-achat, diagnostic",
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -18,9 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="fr"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", inter.variable)}
+      className={cn("antialiased bg-background", fontMono.variable, "font-sans", inter.variable)}
     >
       <body>
         <ThemeProvider>{children}</ThemeProvider>
