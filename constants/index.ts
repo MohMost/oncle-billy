@@ -148,22 +148,32 @@ export const NOTIFICATION_TYPES = {
 
 // Routes
 export const ROUTES = {
+  // Public Pages
   HOME: '/',
   ABOUT: '/about',
   SERVICES: '/services',
   PRICING: '/pricing',
   CONTACT: '/contact',
   BLOG: '/blog',
+  PRIVACY: '/privacy',
+  TERMS: '/terms',
+  // Auth
   LOGIN: '/login',
   REGISTER: '/register',
+  FORGOT_PASSWORD: '/forgot-password',
+  // Client Dashboard
   BOOK: '/book-inspection',
   DASHBOARD: '/dashboard',
   APPOINTMENTS: '/appointments',
   REPORTS: '/reports',
   PROFILE: '/profile',
+  // Admin Dashboard
   ADMIN_DASHBOARD: '/admin/dashboard',
   ADMIN_APPOINTMENTS: '/admin/appointments',
   ADMIN_REPORTS: '/admin/reports',
+  ADMIN_CUSTOMERS: '/admin/customers',
+  ADMIN_PAYMENTS: '/admin/payments',
+  ADMIN_ARTICLES: '/admin/articles',
 } as const;
 
 // Company Info
