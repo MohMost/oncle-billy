@@ -21,13 +21,39 @@ export default function LoginPage() {
     setError('');
     
     try {
-      // TODO: Implement authentication with backend
-      // For now, just simulate success
+      // Test credentials
+      const testAccounts = [
+        // Admin account
+        { email: 'admin@onclebilly.fr', password: 'Admin123!', role: 'admin' },
+        // Inspector account
+        { email: 'inspector@onclebilly.fr', password: 'Inspector123!', role: 'inspector' },
+        // Client account
+        { email: 'client@onclebilly.fr', password: 'Client123!', role: 'client' },
+      ];
+
+      const account = testAccounts.find(acc => acc.email === email && acc.password === password);
+      
       await new Promise(resolve => setTimeout(resolve, 1000));
-      // Redirect to dashboard
-      window.location.href = '/dashboard';
+
+      if (account) {
+        // Store user session
+        localStorage.setItem('user', JSON.stringify({
+          email: account.email,
+          role: account.role,
+          name: account.role === 'admin' ? 'Admin User' : account.role === 'inspector' ? 'Inspector User' : 'Client User'
+        }));
+        
+        // Redirect based on role
+        if (account.role === 'admin') {
+          window.location.href = '/admin/dashboard';
+        } else {
+          window.location.href = '/dashboard';
+        }
+      } else {
+        setError('Identifiants invalides. Veuillez réessayer.');
+      }
     } catch (err) {
-      setError('Identifiants invalides. Veuillez réessayer.');
+      setError('Une erreur est survenue. Veuillez réessayer.');
     } finally {
       setLoading(false);
     }
@@ -120,6 +146,24 @@ export default function LoginPage() {
                 Créer un Compte
               </Link>
             </form>
+
+            <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
+              <p className="text-xs font-semibold text-primary mb-3">Comptes de Test</p>
+              <div className="space-y-2 text-xs text-foreground/70">
+                <div>
+                  <p className="font-semibold text-foreground">Admin:</p>
+                  <p>admin@onclebilly.fr / Admin123!</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground">Inspector:</p>
+                  <p>inspector@onclebilly.fr / Inspector123!</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground">Client:</p>
+                  <p>client@onclebilly.fr / Client123!</p>
+                </div>
+              </div>
+            </div>
 
             <p className="text-xs text-muted-foreground text-center mt-6">
               En vous connectant, vous acceptez nos{' '}
